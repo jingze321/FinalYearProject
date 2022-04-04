@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import axios from 'axios';
-import CountryCart from './CountryCart.jsx'
+import CountryCard from './CountryCard.jsx'
 
 function Countries() {
   const [countries, setCountries] = useState([]);
@@ -44,7 +44,7 @@ function Countries() {
             searchCountries
             .map(country =>
               <div key={country.ID} className="m-2">
-                <CountryCart {...country}/>
+                <CountryCard {...country}/>
               </div>
             )
 
