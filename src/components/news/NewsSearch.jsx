@@ -9,9 +9,8 @@ function NewsSearch(AllCountryInfo) {
             headers: {
                 'X-BingApis-SDK': 'true',
                 'X-RapidAPI-Host': 'bing-news-search1.p.rapidapi.com',
-                'X-RapidAPI-Key': 'c2eafdef01mshb662d83dd0e5ed9p1038bajsn6a091c406b2f'
+                'X-RapidAPI-Key': `${process.env.REACT_APP_NEWS_SEARCH_API_KEY}`
             }
-          
         })
         .then(res => {
             setNewsList(res.data.value);
@@ -19,10 +18,12 @@ function NewsSearch(AllCountryInfo) {
         })
     },[])
 
+//   const {REACT_APP_NEWS_SEARCH_API_KEY} =process.env.REACT_APP_NEWS_SEARCH_API_KEY;
   return (
     <div className="container">
         <div className="row">
             <div className="col-12 col-sm-8 col-lg-12">
+
                 <h6 className="text-muted mt-3">Covid News of {AllCountryInfo?.name?.common}</h6> 
                 <ul className="list-group m-3">
                     {
