@@ -12,6 +12,7 @@ import BarChart from '../cart/BarChart.jsx'
 import LineChart from '../cart/LineChart.jsx'
 
 import NewsLetter from '../news/NewsSearch.jsx'
+import Loading from '../layout/Loading.jsx';
 
 
 function selectedChart(model,computeValue){
@@ -197,7 +198,8 @@ function CountryInfo() {
       },[selectedChartModel])
 
   return (
-    <>  {analyzeData.AllCountryInfo&&
+    <>  
+      {analyzeData.AllCountryInfo?(
         <div className="row">
           <div className="col-sm-7">
               
@@ -282,7 +284,9 @@ function CountryInfo() {
                 {analyzeData.AllCountryInfo&&selectedChart(selectedChartModel?.value,relatedData)};
 
         </div>
-       }
+      ):(
+        <Loading/>
+      )}
     </>      
   )
 }
