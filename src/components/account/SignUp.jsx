@@ -42,7 +42,8 @@ export function SignUp() {
           <h2>{process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID}</h2>
           <h2>{process.env.REACT_APP_FIREBASE_APP_ID}</h2>
           <h2>{process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}</h2>
-
+          <h2>{process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}</h2>
+          <h3>{process.env.REACT_APP_NEWS_SEARCH_API_KEY}-123</h3>
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
