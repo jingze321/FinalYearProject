@@ -35,6 +35,14 @@ export function SignUp() {
     <>
       <Card>
         <Card.Body>
+          <h2>{process.env.REACT_APP_FIREBASE_API_KEY}</h2>
+          <h2>{process.env.REACT_APP_FIREBASE_AUTH_DOMAIN}</h2>
+          <h2>{process.env.REACT_APP_FIREBASE_PROJECT_ID}</h2>
+          <h2>{process.env.REACT_APP_FIREBASE_STORAGE_BUCKET}</h2>
+          <h2>{process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID}</h2>
+          <h2>{process.env.REACT_APP_FIREBASE_APP_ID}</h2>
+          <h2>{process.env.REACT_APP_FIREBASE_MEASUREMENT_ID}</h2>
+
           <h2 className="text-center mb-4">Sign Up</h2>
           {error && <Alert variant="danger">{error}</Alert>}
           <Form onSubmit={handleSubmit}>
