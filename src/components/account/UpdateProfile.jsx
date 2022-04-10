@@ -34,7 +34,6 @@ export default function UpdateProfile() {
         navigate('/')
       })
       .catch((err) => {
-        console.log(err,'err');
         setError(`Failed to update account :` +err)
       })
       .finally(() => {
