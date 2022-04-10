@@ -2,9 +2,9 @@ import React,{useState,useEffect,createContext,useReducer} from 'react'
 // import { auth, fs } from '../config/Config'
 // // import { Navbar1 } from './Navbar'
 // import {Products} from './Products'
-import OverView from './layout/OverView.jsx'
-import {GlobalCaseMap} from './layout/GlobalCaseMap.jsx'
-import OverViewTable from './layout/OverViewTable.jsx'
+import OverView from './home/OverView.jsx'
+import {GlobalCaseMap} from './home/GlobalCaseMap.jsx'
+import OverViewTable from './home/OverViewTable.jsx'
 import axios from 'axios';
 
 

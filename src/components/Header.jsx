@@ -2,11 +2,20 @@ import React from 'react';
 import {Link} from 'react-router'
 import logo from '../public/covid.png'
 // import {Navbar, NavItem} from 'react-materialize';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter,Navigate } from 'react-router-dom';
 import {Nav,Navbar,NavDropdown,NavItem } from "react-bootstrap"
 import { LinkContainer } from 'react-router-bootstrap';
+import { useAuth } from "../firebase/Auth"
 
 export const Header = () => {
+  const { currentUser,logout } = useAuth()
+  const  handleLogout =(e)=>{
+    e.preventDefault();
+    logout().then(()=>{
+      Navigate('/login')
+    })
+}
+
   return (
 
       <>
@@ -28,12 +37,22 @@ export const Header = () => {
                           <NavDropdown.Item href="/countries">Country</NavDropdown.Item>
                         </NavDropdown> */}
                         <Nav.Link href="/countries">Country</Nav.Link>
-                        <Nav.Link href="#about-us">About Us</Nav.Link>
-                        <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+                        {currentUser&&
+                          <Nav.Link href="/update-profile">Update Profile</Nav.Link>
+                        }
+                        // <Nav.Link href="#about-us">About Us</Nav.Link>
+                        // <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+                        
                         
                     </Nav>
-                    <Nav pullright="true">
-                      <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+                    <Nav className="justify-content-end">
+                      {currentUser?
+                        (
+                          <Nav.Link onClick={handleLogout} >Sign Out</Nav.Link>
+                        ):(
+                          <Nav.Link href="/login" >Login</Nav.Link>
+                        )
+                      }
                     </Nav>
               </Navbar.Collapse>
         </Navbar>
