@@ -1,0 +1,31 @@
+.profile-image-container {
+    position: relative;
+    margin:auto;
+}
+    
+.profile-image-container .btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    background-color: #555;
+    color: white;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    display: none;
+}
+
+
+.profile-image-container .btn:hover {
+  background-color: black;
+}
+.profile-image-container:hover .btn{
+    display: block;
+}
+
+.profile-image-containe img{
+    height: 100px;
+}
