@@ -18,7 +18,9 @@ import React, { useState,createContext } from 'react'
 
 // import {onAuthStateChanged} from "firebase/auth"
 import {auth} from './firebase/Config'
-import {AuthProvider} from './firebase/Auth'
+
+import {FirebaseContextProvider} from './firebase/FirebaseContextProvider'
+
 
 import { Login } from './components/account/Login.jsx';
 import UpdateProfile from './components/account/UpdateProfile.jsx';
@@ -53,35 +55,34 @@ function App() {
   // ,[])
   return (
     <>
-    <AuthProvider>
-      <CurrentUserContext.Provider value={user}>
-      <Header/>
-      <Router>
-        <Routes>
-            <Route exact path="/" element={<Home/>} />
-            <Route exact path="/countries" element={<Countries/>} />
-            <Route path="/country/:id" element={<CountryInfo/>} />
+      <FirebaseContextProvider>
+        <CurrentUserContext.Provider value={user}>
+          <Header/>
+          <Router>
+            <Routes>
+                <Route exact path="/" element={<Home/>} />
+                <Route exact path="/countries" element={<Countries/>} />
+                <Route path="/country/:id" element={<CountryInfo/>} />
 
-            <Route path="/signup" element={<SignUp/>}/>
-            <Route path="/login" element={<Login/>}/>
-            {/* <PrivateRoute
-              path="/update-profile"
-              component={UpdateProfile}
-            /> */}
-            {/* <Route exact path='/update-profile' element={<PrivateRoute component={UpdateProfile}/>}/> */}
-            {/* <PrivateRoute path="/update-profile" component={UpdateProfile} /> */}
-            {/* <PrivateRoute exact path="/" element={<UpdateProfile/>}/> */}
-            <Route exact path='/update-profile' element={<PrivateRoute/>}>
-              <Route exact path='/update-profile' element={<UpdateProfile/>}/>
-            </Route>
-            {/* <Route path="/update-profile" element={<UpdateProfile/>}/> */}
-            {/* <PrivateRoute path="/update-profile" component={<UpdateProfile/>}/> */}
-            <Route path="*" element={<ErrorPage/>}/>
-        </Routes>
-      </Router>
-      </CurrentUserContext.Provider>
-    </AuthProvider>
-
+                <Route path="/signup" element={<SignUp/>}/>
+                <Route path="/login" element={<Login/>}/>
+                {/* <PrivateRoute
+                  path="/update-profile"
+                  component={UpdateProfile}
+                /> */}
+                {/* <Route exact path='/update-profile' element={<PrivateRoute component={UpdateProfile}/>}/> */}
+                {/* <PrivateRoute path="/update-profile" component={UpdateProfile} /> */}
+                {/* <PrivateRoute exact path="/" element={<UpdateProfile/>}/> */}
+                <Route exact path='/update-profile' element={<PrivateRoute/>}>
+                  <Route exact path='/update-profile' element={<UpdateProfile/>}/>
+                </Route>
+                {/* <Route path="/update-profile" element={<UpdateProfile/>}/> */}
+                {/* <PrivateRoute path="/update-profile" component={<UpdateProfile/>}/> */}
+                <Route path="*" element={<ErrorPage/>}/>
+            </Routes>
+          </Router>
+        </CurrentUserContext.Provider>
+      </FirebaseContextProvider>
     </>
   );
 }
