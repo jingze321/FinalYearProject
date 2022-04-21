@@ -1,17 +1,20 @@
 import React, { useRef, useState } from "react"
-import { Form, Button, Card, Alert } from "react-bootstrap"
+import { Form, Button, Card, Alert,Container,Row,Col } from "react-bootstrap"
 import { useAuth } from "../../firebase/Auth"
+import {useDatabase} from "../../firebase/Database"
 import { Link, useNavigate } from "react-router-dom"
 
 export function SignUp() {
   const emailRef = useRef()
   const passwordRef = useRef()
   const passwordConfirmRef = useRef()
+  const firstNameRef = useRef()
+  const lastNameRef = useRef()
   const { signup } = useAuth()
+  const { storeUserProfile } = useDatabase()
   const [error, setError] = useState("")
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
-
   async function handleSubmit(e) {
     e.preventDefault()
 
@@ -22,7 +25,12 @@ export function SignUp() {
     try {
       setError("")
       setLoading(true)
-      await signup(emailRef.current.value, passwordRef.current.value)
+      await signup(emailRef.current.value, passwordRef.current.value).then((credentials)=>{
+        console.log(credentials);
+        storeUserProfile(firstNameRef.current.value, lastNameRef.current.value,credentials.user.uid)
+
+      })
+      
       navigate('/')
     } catch (error){
       setError(error.message)
@@ -41,6 +49,28 @@ export function SignUp() {
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" ref={emailRef} required />
+            </Form.Group>
+            <Form.Group id="name" >
+            <Container fluid className='gx-0'>
+              <Row >
+              <Col>
+                <Form.Label>First Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  ref={firstNameRef}
+                  required
+                />
+              </Col>
+              <Col>
+                <Form.Label>Last Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  ref={lastNameRef}
+                  required
+                />
+              </Col>
+              </Row>
+              </Container>
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
