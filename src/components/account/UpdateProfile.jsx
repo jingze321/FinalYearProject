@@ -71,9 +71,10 @@ export default function UpdateProfile() {
     if (!lastNameRef.current.value || !firstNameRef.current.value) {
       return setError("Name is required")
     }
-    const promises = []
     setLoading(true)
     setError("")
+    
+    const promises = []
 
     if (emailRef.current.value !== currentUser.email) {
       promises.push(changeEmail(emailRef.current.value))
@@ -91,7 +92,6 @@ export default function UpdateProfile() {
     Promise.all(promises)
       .then((res) => {
         navigate('/')
-        console.log(res,'res');
       })
       .catch((err) => {
         setError(`Failed to update account :` +err)
@@ -134,7 +134,7 @@ export default function UpdateProfile() {
             </div>
 
             <Form.Group id="file" controlId="formFile" className="mb-3">
-              <Form.Label>Product Image</Form.Label>
+              <Form.Label>Profile Image</Form.Label>
               <Form.Control  type="file" onChange={handleProfileImage} className="form-control"/>
             </Form.Group>
             <Form.Group id="email">
@@ -154,7 +154,7 @@ export default function UpdateProfile() {
                 <Form.Control
                   type="text"
                   ref={firstNameRef}
-                  defaultValue={userDetails?.fullName.firstName??''}
+                  value={userDetails?.fullName.firstName??''}
                   required
                 />
               </Col>

@@ -26,7 +26,7 @@ export function SignUp() {
       setError("")
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value).then((credentials)=>{
-        console.log(credentials);
+        
         storeUserProfile(firstNameRef.current.value, lastNameRef.current.value,credentials.user.uid)
 
       })
