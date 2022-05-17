@@ -16,6 +16,9 @@ function NewsSearch(AllCountryInfo) {
             setNewsList(res.data.value);
             console.log(res.data,'1');
         })
+        return () => {
+            setNewsList({}); 
+          };
     },[])
 
 //   const {REACT_APP_NEWS_SEARCH_API_KEY} =process.env.REACT_APP_NEWS_SEARCH_API_KEY;
