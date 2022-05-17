@@ -1,7 +1,6 @@
 import React,{useState,useEffect,useRef} from 'react'
 import Category from './Category'
 import MainCarousel from "./MainCarousel"
-import logo from '../../public/firebase-logo.png'
 function AboutPage() {
   const handleLangChange = (data) =>{
     myRef.current.scrollIntoView()   
