@@ -16,9 +16,9 @@ return (
         src="https://blog.templatetoaster.com/wp-content/uploads/2019/09/What-is-Bootstrap-Facebook.png"
         alt="Learn Plotly"
       />
-      <Carousel.Caption>
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+      <Carousel.Caption style={{color:"black" ,backgroundColor:"rgba(255, 255, 255, 0.75)"}}>
+        <h3>What is Bootstrap</h3>
+        <p>Click and learn Bootstrap now</p>
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item >
@@ -29,9 +29,9 @@ return (
         alt="Second slide"
       />
 
-      <Carousel.Caption>
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <Carousel.Caption style={{color:"black" ,backgroundColor:"rgba(255, 255, 255, 0.75)"}}>
+        <h3>Firebase</h3>
+        <p> Provides tools for tracking analytics, reporting and fixing app crashes, creating marketing and product experiment.</p>
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item  variant="dark" >
@@ -42,9 +42,9 @@ return (
         alt="Third slide"
       />
 
-      <Carousel.Caption style={{color:"black"}}>
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+      <Carousel.Caption style={{color:"black" ,backgroundColor:"rgba(255, 255, 255, 0.75)"}}>
+        <h3>React Native</h3>
+        <p>New app development language for mobile!</p>
       </Carousel.Caption>
     </Carousel.Item>
   </Carousel>

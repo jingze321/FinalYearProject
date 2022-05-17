@@ -4,7 +4,7 @@ import axios from 'axios';
 import Select from 'react-select'
 import ChoroplethMap from '../cart/ChoroplethMap.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faKitMedical,faVirusCovid,faSkull} from '@fortawesome/free-solid-svg-icons';
+import {faUser,faEarthAmericas} from '@fortawesome/free-solid-svg-icons';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 
 import PieChart from '../cart/PieChart.jsx'
@@ -230,7 +230,7 @@ function CountryInfo() {
                         <div className="card-body cleartfix p-1">
                           <div className="media d-flex ">
                             <div className="align-self-center">
-                            <FontAwesomeIcon icon={faKitMedical}  className="fa-4x" style={{  color: "green" }}/>
+                            <FontAwesomeIcon icon={faUser}  className="fa-4x m-1" style={{  color: "grey" }}/>
                             </div>
                             <div className="media-body align-self-center mx-1">
                               <h4>Population</h4>
@@ -258,7 +258,7 @@ function CountryInfo() {
                         <div className="card-body cleartfix p-1">
                           <div className="media d-flex ">
                             <div className="align-self-center">
-                            <FontAwesomeIcon icon={faKitMedical}  className="fa-4x" style={{  color: "green" }}/>
+                            <FontAwesomeIcon icon={faEarthAmericas}  className="fa-4x m-1" style={{  color: "grey" }}/>
                             </div>
                             <div className="media-body align-self-center mx-1">
                               <h4>Size </h4>
