@@ -44,7 +44,6 @@ function OverViewTable(countriesData) {
   }
   return (
     <div>
-        <p><button onClick={()=>sortTable("TotalConfirmed")}>Sort</button></p>
         <table className="table">
             <thead className="table-dark">
                 <tr>
