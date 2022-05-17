@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from 'react'
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 function CountryCard(country) {
@@ -10,11 +9,10 @@ function CountryCard(country) {
       <img
         src={`https://flagcdn.com/w320/${country.CountryCode.toLowerCase()}.png`}
         style={{ maxHeight: "200px", margin: "30px 0" }}
-        alt="South Africa"/>
+        alt={country.Country}/>
       <div className="card-body d-flex flex-column">
-        <h5 className="card-title mt-auto mb-3">{country.Country}</h5>
-        {/* <hr/> */}
-        <div className="list-unstyled py-3">
+        <h5 className="card-title ps-0 my-1">{country.Country}</h5>
+        <div className="list-unstyled py-1">
           <p className="card-text">Total Confirmed : <strong>{country.TotalConfirmed}</strong></p> 
           <p className="card-text">Total Deaths : <strong>{country.TotalDeaths}</strong></p>
         </div>
