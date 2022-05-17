@@ -59,7 +59,7 @@ function getValue(key) {
     switch(selectTypeContext.modeState){
       case 'cases':
         return ({colName:'TotalConfirmed',
-                title :'Total Name',
+                title :'Total Confirmed',
                 colorscale: [
                     [0,'rgb(0, 0, 110)'],[0.35,'rgb(106, 137, 247)'],
                     [0.5,'rgb(255, 254, 0)'], [0.8,'rgb(255, 173, 0)'],
