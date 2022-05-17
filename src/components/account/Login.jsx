@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import { Form, Button, Card, Alert } from "react-bootstrap"
+import { Form, Button, Card } from "react-bootstrap"
 import {Link,useNavigate} from 'react-router-dom'
 import {auth} from '../../firebase/Config'
 import {signInWithEmailAndPassword} from 'firebase/auth'
@@ -19,11 +19,10 @@ export const Login = () => {
     const handleLogin = async (e)=>{
         e.preventDefault();
 
-        signInWithEmailAndPassword(auth,email,password).then(()=>{
+        signInWithEmailAndPassword(auth,email,password).then((userCredential)=>{
             setSuccess("login successful")
             setEmail('')
             setPassword('')
-            // history.push("/")
             navigate('/')
         }).catch((err)=>{
             setError(err.message)   
