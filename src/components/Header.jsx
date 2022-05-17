@@ -40,12 +40,12 @@ export const Header = () => {
                         {currentUser&&
                           <Nav.Link href="/update-profile">Update Profile</Nav.Link>
                         }
-                        // <Nav.Link href="#about-us">About Us</Nav.Link>
-                        // <Nav.Link href="#contact-us">Contact Us</Nav.Link>
+                        <Nav.Link href="/about-us">About Us</Nav.Link>
+                        <Nav.Link href="/contact-us">Contact Us</Nav.Link>
                         
                         
                     </Nav>
-                    <Nav className="justify-content-end">
+                    <Nav className="ml-auto">
                       {currentUser?
                         (
                           <Nav.Link onClick={handleLogout} >Sign Out</Nav.Link>
