@@ -1,0 +1,64 @@
+
+.msg-form {
+    background-color: white;
+    padding: 20px
+}
+
+.pad-icon {
+    padding-top: 50px;
+    padding-left: 20px
+}
+
+.pad-icon a {
+    text-decoration: none;
+    margin-right: 40px
+}
+
+.input-group input:focus {
+    border: 1px solid blue
+}
+
+.pad-icon a:active {
+    height: 30px;
+    width: 30px;
+    background-color: #0080ff;
+    border-radius: 100%
+}
+
+.links {
+    padding-top: 50px;
+    width: 50%
+}
+
+#bordering a:active {
+    border: 1px solid #0080ff
+}
+.contact-btn {
+    padding: 0.8rem 4.1vw;
+    border-radius: 10px;
+    color: black;
+    background: #e7e7e7;
+    text-decoration: none;
+    font-family: sans-serif;
+    transition: 1s;
+  }
+.contact-btn.selected{
+  color:white;    
+  background: #4CAF50;
+}
+/* .contact-btn {
+    position: relative;
+    width: 400px;
+    height: 200px;
+    border: 3px solid #73AD21;
+}
+
+.contact-btn i {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    width: 200px;
+    height: 100px;
+    border: 3px solid #73AD21;
+} */
+ 
