@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth,db} from "../firebase/Config"
 import { doc, setDoc, getDoc, collection, addDoc } from "firebase/firestore"; 
+
 const DatabaseContext = React.createContext()
 
 export function useDatabase() {
@@ -24,8 +25,8 @@ export function DatabaseProvider({ children }) {
   }
 
   async function fetchUserProfile(){
-    console.log(currentUser.uid);
-    const docRef = doc(db, "user", currentUser.uid);
+    if(!currentUser?.uid) return ;
+    const docRef = doc(db, "user", currentUser?.uid);
     const docSnap = await getDoc(docRef);
     
     if (docSnap.exists()) {
@@ -34,6 +35,21 @@ export function DatabaseProvider({ children }) {
     } else {
       console.log("No such document!");
     }
+  }
+
+  async function sendInboxMessage(fullName,email,message){
+    const docRef = await addDoc(collection(db, "inbox-message"), 
+                  { 
+                    UID:currentUser?.uid??"Unknown",
+                    fullName,
+                    email,
+                    message,
+                    timestamp:Date.now(),
+                  } 
+                ) 
+    // alert(docRef.id);
+    return docRef.id;
+    // console.log("Document written with ID: ", docRef.id);
   }
 
   useEffect(() => {
@@ -50,6 +66,7 @@ export function DatabaseProvider({ children }) {
     currentUser,
     storeUserProfile,
     fetchUserProfile,
+    sendInboxMessage,
   }
 
   return (

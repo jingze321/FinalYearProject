@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react"
 import { auth,storage } from "../firebase/Config"
-import {  ref,uploadBytesResumable,getDownloadURL,deleteObject} from "firebase/storage";
+import { ref,uploadBytesResumable,getDownloadURL,deleteObject } from "firebase/storage";
 const StorageContext = React.createContext()
 
 export function useStorage() {
@@ -13,21 +13,23 @@ export function StorageProvider({ children }) {
 
 
   function changeProfileImage(image) {
-    // const uploadTask = ref(storage,`user-profile-image/${image.name}`);
     const storageRef  = ref(storage,`user-profile-image/${currentUser.uid}`);
-    const uploadTask = uploadBytesResumable(storageRef, image);
-
+    uploadBytesResumable(storageRef, image).then((snapshot) => {
+      console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+    }).catch((error) => {
+      console.error('Upload failed', error);
+    });
   }
+  
   async function getProfileImage() {
     const storageRef = ref(storage, `user-profile-image/${currentUser.uid}`);
-    // console.log(forestRef,'forestRef');
     var urlLink = null;
     await getDownloadURL(storageRef)
       .then((url) => {
-        console.log(url,'url');
-        urlLink= url;
-        // Insert url into an <img> tag to "download"
-      }).catch((error) => {
+        console.log(url,'forestRef');
+        urlLink = url
+      })
+      .catch((error) => {
         console.log(error.code,'error.code');
         switch (error.code) {
           case 'storage/object-not-found':
@@ -47,15 +49,16 @@ export function StorageProvider({ children }) {
             break;
         }
       })
-    return urlLink;
+      return urlLink;
   }
 
   function deleteProfileImage(image) {
     const storageRef  = ref(storage,`user-profile-image/${currentUser.uid}`);
     deleteObject(storageRef).then(() => {
       // File deleted successfully
+      console.log("File deleted");
     }).catch((error) => {
-      // Uh-oh, an error occurred!
+      console.log(error);
     });
 
   }
@@ -78,7 +81,6 @@ export function StorageProvider({ children }) {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
-      console.log(user,'user1');
       setCurrentUser(user)
       setLoading(false)
     })
