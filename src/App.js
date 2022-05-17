@@ -10,6 +10,9 @@ import Home from './components/Home'
 import Countries from './components/region/Countries'
 import CountryInfo from './components/region/CountryInfo'
 
+import AboutPage from './components/about/AboutPage.jsx';
+import Contact from './components/contact/Contact.jsx';
+
 import {SignUp} from './components/account/SignUp'
 
 import {ErrorPage} from './components/ErrorPage'
@@ -17,46 +20,20 @@ import PrivateRoute from './components/PrivateRoute'
 import React, { useState,createContext } from 'react'
 
 // import {onAuthStateChanged} from "firebase/auth"
-import {auth} from './firebase/Config'
 
-import {FirebaseContextProvider} from './firebase/FirebaseContextProvider'
 
 
 import { Login } from './components/account/Login.jsx';
 import UpdateProfile from './components/account/UpdateProfile.jsx';
 
-export const CurrentUserContext = createContext();
+import {FirebaseContextProvider} from './firebase/FirebaseContextProvider'
 
-// import {db} from './firebase/Config.js'
 function App() {
-  const [user,setUser]=useState({});
-  // const { currentUser } = useAuth();
-  // console.log(currentUser);
-  // onAuthStateChanged(auth,(currentUser)=>{
-  //   setUser(currentUser);
-  // }
-  // useEffect(()=>
 
-  //     // onSnapshot(collection(db,'files1'),(snapshot)=>{
-  //     //   console.log(snapshot.docs,'docs');
-  //     // })
-      
-  //     // const data = await getDocs(userCollectionRef);
-  //     // const dataList = data.docs.map((doc) => doc.data());
-  //     // console.log(dataList,'dataList');
-  //     // if (data) {
-  //     //   console.log("Document data:", data,'1');
-  //     // } else {
-  //     //     // doc.data() will be undefined in this case
-  //     //     console.log("No such document!");
-  //     // }
-  //     // console.log(data.docs);
-  //     // setUsers(data.docs.map((doc)=>({...doc.data(),id:doc.id})))
-  // ,[])
   return (
     <>
+
       <FirebaseContextProvider>
-        <CurrentUserContext.Provider value={user}>
           <Header/>
           <Router>
             <Routes>
@@ -76,12 +53,11 @@ function App() {
                 <Route exact path='/update-profile' element={<PrivateRoute/>}>
                   <Route exact path='/update-profile' element={<UpdateProfile/>}/>
                 </Route>
-                {/* <Route path="/update-profile" element={<UpdateProfile/>}/> */}
-                {/* <PrivateRoute path="/update-profile" component={<UpdateProfile/>}/> */}
+                <Route path="/about-us" element={<AboutPage/>}/>
+                <Route exact path='/contact-us' element={<Contact/>}/>
                 <Route path="*" element={<ErrorPage/>}/>
             </Routes>
           </Router>
-        </CurrentUserContext.Provider>
       </FirebaseContextProvider>
     </>
   );
