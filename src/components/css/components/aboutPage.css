@@ -1,0 +1,238 @@
+.carousel-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.carousel-wrapper {
+    display: flex;
+    width: 100%;
+    position: relative;
+}
+
+.carousel-content-wrapper {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-content {
+    display: flex;
+    transition: all 250ms linear;
+    -ms-overflow-style: none;  /* hide scrollbar in IE and Edge */
+    scrollbar-width: none;  /* hide scrollbar in Firefox */
+}
+
+/* hide scrollbar in webkit browser */
+.carousel-content::-webkit-scrollbar, .carousel-content::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-content > * {
+    width: 100%;
+    flex-shrink: 0;
+    flex-grow: 1;
+}
+
+.carousel-content.show-2 > * {
+    width: 50%;
+}
+
+.carousel-content.show-3 > * {
+    width: calc(100% / 3);
+}
+
+.carousel-content.show-4 > * {
+    width: calc(100% / 4);
+}
+
+.left-arrow, .right-arrow {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 24px;
+    background-color: white;
+    border: 1px solid #ddd;
+    opacity: 0.05;
+    transition: 0.5s;
+}
+
+.left-arrow {
+    left: 24px;
+}
+
+.right-arrow {
+    right: 24px;
+}
+
+.left-arrow:hover, .right-arrow:hover{
+    opacity: 0.9;
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .left-arrow, .right-arrow {
+        display: none;
+    }
+}
+
+.hover {
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 60%;
+    color:white;
+    transition: 0.2s;
+  }
+  
+  .hover-overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 90;
+    transition: all 0.4s;
+  }
+  
+  .hover img {
+    position: absolute;
+    top: 5;
+    left: 0;
+    transition: all 0.3s;
+    height: 250;
+    width:250;
+  }
+  
+  .hover-content {
+    position: relative;
+    z-index: 99;
+  }
+  
+  
+  /* DEMO 1 ============================== */
+  .hover-1 img {
+    width: 80%;
+    position: absolute;
+    top: 0;
+    left: -15%;
+    transition: all 0.3s;
+  }
+  
+  .hover-1-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    transition: all 0.4s;
+  }
+  
+  .hover-1 .hover-overlay {
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .hover-1-description {
+    transform: translateY(0.5rem);
+    transition: visibility 0s, opacity 0.5s linear;
+    visibility: hidden;
+    opacity: 0;
+    display: none;
+    margin-right: 1rem ;
+  }
+  
+  .hover-1:hover .hover-1-content {
+    /* bottom: 1rem; */
+    background-color: rgba(255, 255, 255, 0.75);
+  }
+  
+  .hover-1:hover .hover-1-description {
+    opacity: 1;
+    transform: none;
+    display: block;
+    visibility: visible;
+  }
+  
+  .hover-1:hover img {
+    left: 0;
+    right:0;
+  }
+
+  .hover:hover {
+    color: #333333;
+  }
+  
+  .hover-1:hover .hover-overlay {
+    opacity: 0;
+  }
+
+  @media (max-width: 768px) {
+    .hover-1:hover .hover-1-description {
+        opacity: 0;
+        transform: none;
+        display: none;
+      }
+  }
+
+/* DEMO 3 ============================== */
+.hover-3::after {
+    content: '';
+    width: calc(100% - 3rem);
+    height: calc(100% - 3rem);
+    border: 1px solid #fff;
+    position: absolute;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 90;
+    transition: all 0.3s;
+    transform: scale(1.1);
+    opacity: 0;
+    display: block;
+    opacity: 0;
+  }
+  
+  .hover-3-content {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    transform: translateY(-50%);
+    text-align: center;
+    z-index: 99;
+  }
+  
+  .hover-3-description {
+    opacity: 0;
+    transform: scale(1.3);
+    transition: all 0.3s;
+  }
+  
+  .hover-3 img {
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .hover-3 .hover-overlay {
+    background: rgba(0, 0, 0, 0.2);
+  }
+  
+  .hover-3:hover img {
+    width: 100%;
+  }
+  
+  .hover-3:hover::after {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .hover-3:hover .hover-3-description {
+    opacity: 1;
+    transform: none;
+  }
+  
+  .hover-3:hover .hover-overlay {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
