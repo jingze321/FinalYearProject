@@ -46,14 +46,12 @@ function Home(props) {
       .then(res => {
           setGlobalData(res.data.Global);
           setCountryData(res.data.Countries);
-          console.log(res.data.Countries,'asdsda');    
       })
   },[]);
   // console.log(ThemeContext);
   const [mode, dispatch] =useReducer(reducer,'cases')
     return (
         <div >
-          {mode}
           <SelectTypeContext.Provider value={{modeState: mode, modeDispatch: dispatch}}>
             <OverView {...globalData} />
             <GlobalCaseMap {...countriesData}/>
