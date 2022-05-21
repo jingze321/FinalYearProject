@@ -12,14 +12,15 @@ export function DatabaseProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
   const [loading, setLoading] = useState(true)
 
-  async function storeUserProfile(firstName,lastName,credentialsId){
+  async function storeUserProfile(firstName,lastName,gender,credentialsId){
     const currentUserId = currentUser?.uid ?? credentialsId;
     await setDoc(doc(db, "user", currentUserId), 
                   { 
                     fullName:{
                       firstName:firstName,
                       lastName:lastName,
-                    }
+                    },
+                    gender
                   } 
                 ) 
   }
