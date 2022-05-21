@@ -10,6 +10,8 @@ export function SignUp() {
   const passwordConfirmRef = useRef()
   const firstNameRef = useRef()
   const lastNameRef = useRef()
+  // const genderRef = useRef("male")
+  const [gender, setGender] = useState("male");
   const { signup } = useAuth()
   const { storeUserProfile } = useDatabase()
   const [error, setError] = useState("")
@@ -18,6 +20,13 @@ export function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault()
 
+    if ((firstNameRef.current.value).length<1||(lastNameRef.current.value).length<1) {
+      return setError("First name and last name should more than 3 character")
+    }
+
+    if ((passwordRef.current.value).length <6) {
+      return setError("Passwords should more than 6 digits")
+    }
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
@@ -27,7 +36,7 @@ export function SignUp() {
       setLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value).then((credentials)=>{
         
-        storeUserProfile(firstNameRef.current.value, lastNameRef.current.value,credentials.user.uid)
+        storeUserProfile(firstNameRef.current.value, lastNameRef.current.value,gender,credentials.user.uid)
 
       })
       
@@ -71,6 +80,34 @@ export function SignUp() {
               </Col>
               </Row>
               </Container>
+            </Form.Group>
+
+            <Form.Group id="gender">
+
+              <Form.Label>Gender</Form.Label>
+              <Row>
+                <Col>
+                  <Form.Check
+                    label="Male"
+                    inline
+                    name="group"
+                    type="radio"
+                    id={`male`}
+                    value="male"
+                    defaultChecked
+                    onChange={(e)=>setGender(e.target.value)}
+                  />
+                  <Form.Check
+                    label="Female"
+                    inline
+                    name="group"
+                    type="radio"
+                    value="female"
+                    id={`female`}
+                    onChange={(e)=>setGender(e.target.value)}
+                  />
+                </Col>
+              </Row>
             </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>

@@ -13,6 +13,8 @@ export default function UpdateProfile() {
   const passwordConfirmRef = useRef()
   const firstNameRef = useRef()
   const lastNameRef = useRef()
+  const genderRef = useRef()
+  const [gender, setGender] = useState("male");
   
   const { currentUser, changePassword, changeEmail } = useAuth()
   const { changeProfileImage,getProfileImage,deleteProfileImage} = useStorage()
@@ -36,6 +38,7 @@ export default function UpdateProfile() {
     });
     fetchUserProfile().then((result)=>{
       setUserDetails(result);
+      setGender(result.gender)
     });
   },[getProfileImage,fetchUserProfile])
 
@@ -61,13 +64,21 @@ export default function UpdateProfile() {
 
   }
 
+  const handleOnChange = () => {
+  };
+
   const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault()
+    if ((passwordRef.current.value).length <6) {
+      return setError("Passwords should more than 6 digits")
+    }
+
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
       return setError("Passwords do not match")
     }
+
     if (!lastNameRef.current.value || !firstNameRef.current.value) {
       return setError("Name is required")
     }
@@ -86,7 +97,7 @@ export default function UpdateProfile() {
       promises.push(changeProfileImage(image))
     }
     if (lastNameRef&&firstNameRef){
-      promises.push(storeUserProfile(firstNameRef.current.value,lastNameRef.current.value))
+      promises.push(storeUserProfile(firstNameRef.current.value,lastNameRef.current.value,gender))
     }
     
     Promise.all(promises)
@@ -115,13 +126,14 @@ export default function UpdateProfile() {
       return;
     }
   }
-
   return (
+    
     <>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Update Profile</h2>
           {error && <Alert variant="danger">{error}</Alert>}
+          {imageError && <Alert variant="danger">{imageError}</Alert>}
           <Form onSubmit={handleSubmit}>
             {/* {image && <Alert variant="danger">{image}</Alert>} */}
             <div className="text-center profile-image-container"> 
@@ -154,7 +166,7 @@ export default function UpdateProfile() {
                 <Form.Control
                   type="text"
                   ref={firstNameRef}
-                  value={userDetails?.fullName.firstName??''}
+                  defaultValue={userDetails?.fullName.firstName??''}
                   required
                 />
               </Col>
@@ -170,7 +182,36 @@ export default function UpdateProfile() {
               </Row>
               </Container>
             </Form.Group>
-            
+            <Form.Group id="gender">
+
+            <Form.Label>Gender</Form.Label>
+              <Row>
+                <Col>
+                  <Form.Check
+                    label="Male"
+                    inline
+                    name="group"
+                    type="radio"
+                    id={`male`}
+                    value="male"
+                    checked={gender==="male"}
+                    onChange={(e)=>setGender("male")}
+                  />
+                </Col>
+                <Col>
+                  <Form.Check
+                    label="Female"
+                    inline
+                    name="group1"
+                    type="radio"
+                    value="female"
+                    id={`female`}
+                    checked={gender==="female"}
+                    onChange={(e)=>setGender("female")}
+                  />
+                </Col>
+              </Row>
+            </Form.Group>
             <Form.Group id="password">
               <Form.Label>Password</Form.Label>
               <Form.Control
