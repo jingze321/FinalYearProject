@@ -61,7 +61,7 @@ function Inbox() {
                     <div className="input-group-addon p-2">
                      <FontAwesomeIcon className="" icon={faUser} />
                     </div> 
-                    <input type="text" ref={fullNameRef} defaultValue={userDetails?(userDetails.fullName?.firstName+" "+ userDetails?.fullName?.lastName):''} onChange={(e)=>{setFullName(e.target.value)}} className="form-control border-0"/>
+                    <input type="text" ref={fullNameRef} defaultValue={userDetails?(userDetails.fullName?.firstName+" "+ userDetails?.fullName?.lastName):''} onChange={(e)=>{setFullName(e.target.value)}} className="form-control border-0" required/>
                 </div>
             </div>
             <div className="form-group "> 
@@ -70,7 +70,7 @@ function Inbox() {
                     <div className="input-group-addon p-2"> 
                         <FontAwesomeIcon className="" icon={faEnvelope} />
                     </div> 
-                    <input type="text" ref={emailRef} defaultValue={currentUser?.email??''}  onChange={(e)=>{setEmail(e.target.value)}} className="form-control border-0"/>
+                    <input type="email" ref={emailRef} defaultValue={currentUser?.email??''}  onChange={(e)=>{setEmail(e.target.value)}} className="form-control border-0"/>
                 </div>
             </div>
             <div className="form-group"> 
