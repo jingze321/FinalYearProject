@@ -12,7 +12,7 @@ function Loading() {
             <div className="text-center ">
                 <div className="spinner-grow" role="status">
                 </div>
-                {/* <p className="sr-only">Loading...</p> */}
+                <p className="sr-only">Loading...</p>
 
             </div>
         </div>
