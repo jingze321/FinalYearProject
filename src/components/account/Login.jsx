@@ -39,6 +39,11 @@ export const Login = () => {
                         {success}
                     </div>
                 }
+                {error && 
+                    <div className="alert alert-danger" role="alert">
+                        {error}
+                    </div>
+                }
 
                 <Form onSubmit={handleLogin}>
 
@@ -63,10 +68,7 @@ export const Login = () => {
                 </Form>
             </Card.Body>
       </Card>
-      {error && 
-        <div className="alert alert-danger" role="alert">
-            {error}
-        </div>}
+
     </div>
     )
 }
