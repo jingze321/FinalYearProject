@@ -14,10 +14,14 @@ function Inbox() {
     const [fullName,setFullName] = useState(null)
     const [ message,setMessage] = useState(null)
     const [inboxRef,setInboxRef] = useState(null)
+    const [error,setError] = useState(null)
     const fullNameRef = useRef(null)
     const emailRef = useRef(null)
     function handleSendMessage(e) {
         e.preventDefault()
+        if (message.trim().length<=10){
+            return setError("Message length should More than 10 words!")
+        }
         Promise.resolve(sendInboxMessage(
                     fullNameRef?.current?.value,
                     emailRef?.current?.value,
@@ -25,6 +29,7 @@ function Inbox() {
                 ))
         .then((res) => {
           console.log(res,'res');
+          setError(null);
           setInboxRef(res);
         })
         .catch((err) => {
@@ -54,6 +59,10 @@ function Inbox() {
                 Your message has been submitted, we will get you back in within 2 business days.
                 <br/>
                 <strong>Reference Number: {inboxRef}</strong>
+            </div>}
+            {error&&
+            <div class="alert alert-danger" role="alert">
+               {error}
             </div>}
             <div className="form-group"> 
                 <label htmlFor="name" className="h6">Your Name</label>
