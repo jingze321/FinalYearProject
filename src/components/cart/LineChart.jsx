@@ -96,7 +96,6 @@ function LineChart(datas) {
     <>
     {datas&&
       <>
-      <div>Line:{states}</div>
       {/* <Select
               // value={selectedState}//{ label: "All", value: "All" }
               // onChange={setSelectedState}

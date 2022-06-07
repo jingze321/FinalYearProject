@@ -48,7 +48,7 @@ function OverViewTable(countriesData) {
             <thead className="table-dark">
                 <tr>
                     <th>#</th>
-                    <th id="Country" onClick={()=>sortTable("Country")}>Country {dynamicArrow('Country',selectTableName,sortOrder)}</th>
+                    <th id="Country" onClick={()=>sortTable("Country")}>Country/Region {dynamicArrow('Country',selectTableName,sortOrder)}</th>
                     <th onClick={()=>sortTable("TotalConfirmed")}>Total Confirmed {dynamicArrow('TotalConfirmed',selectTableName,sortOrder)}</th>
                     <th onClick={()=>sortTable("TotalDeaths")}>Total Deaths {dynamicArrow('TotalDeaths',selectTableName,sortOrder)}</th>
                     <th>Total Recovered</th>
