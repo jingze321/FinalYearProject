@@ -28,22 +28,13 @@ export const Header = () => {
             </Navbar.Brand>
             <Navbar.Toggle />
               <Navbar.Collapse>
-                      <Nav className="container-fluid ">
-                        {/* <NavDropdown title="Products">
-                          <NavDropdown.Item href="addproduct">Product1</NavDropdown.Item>
-                          <NavDropdown.Item href="">Product2</NavDropdown.Item>
-                          <NavDropdown.Item href="">Product3</NavDropdown.Item>
-                          <NavDropdown.Divider />
-                          <NavDropdown.Item href="/countries">Country</NavDropdown.Item>
-                        </NavDropdown> */}
-                        <Nav.Link href="/countries">Country</Nav.Link>
+                    <Nav className="container-fluid ">
+                        <Nav.Link href="/countries">Country/Region</Nav.Link>
                         {currentUser&&
                           <Nav.Link href="/update-profile">Update Profile</Nav.Link>
                         }
                         <Nav.Link href="/about-us">About Us</Nav.Link>
                         <Nav.Link href="/contact-us">Contact Us</Nav.Link>
-                        
-                        
                     </Nav>
                     <Nav className="ml-auto">
                       {currentUser?
