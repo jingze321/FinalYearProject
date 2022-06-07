@@ -109,7 +109,7 @@ function LineChart(datas) {
                   
                   if (data!=="AllCountryInfo"){
                     return(
-                      <div className="ms-2 chrome-check-list"  style={{"backgroundColor":generateColorMemo()}} key={`state-${index}`}>
+                      <div className={`ms-2 chrome-check-list ${states.includes(data)?'check-list-active':''}`}  key={`state-${index}`}>
                         <input
                           key={`state-${index}`}
                           value={data}

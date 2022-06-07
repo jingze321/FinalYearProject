@@ -86,11 +86,16 @@ function BarChart(datas) {
 
             {
               Object.keys(datas).map((data, index) => {
-                console.log(Object.keys(datas).length,'11');
+                console.log(Object.keys(datas),'11',checkedCheckboxes.includes(data));
                 if (data!=="AllCountryInfo"){
                   if ((data==="All"&&Object.keys(datas).length>2)) return;
                   return(
-                    <div className="chrome-check-list ms-2" key={`state-${index}`}>
+                    <div className={`chrome-check-list ms-2
+                                      ${checkedCheckboxes.includes(data)?'check-list-active':''}
+                                    `} 
+                          key={`state-${index}`} 
+
+                    >
                       <input
                         key={`state-${index}`}
                         value={data}
@@ -117,7 +122,7 @@ function BarChart(datas) {
           <div className="d-flex justify-content-center">
             <Plot
               data={computeValue}
-              layout={ {width: 640, height: 480, title: selectedOption.value} }
+              layout={ {width: 640, height: 480, title: "Pandemic Data"} }
             />
           </div>
         </div>
