@@ -4,3 +4,7 @@
     border: 2px solid black;
     padding :0.1rem
 }
+.check-list-active{
+    background-color: rgb(85, 148, 21);
+    color: white;
+}
