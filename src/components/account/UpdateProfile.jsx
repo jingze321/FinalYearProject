@@ -64,19 +64,19 @@ export default function UpdateProfile() {
 
   }
 
-  const handleOnChange = () => {
-  };
 
   const navigate = useNavigate()
 
   function handleSubmit(e) {
     e.preventDefault()
-    if ((passwordRef.current.value).length <6) {
-      return setError("Passwords should more than 6 digits")
-    }
-
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      return setError("Passwords do not match")
+    if (passwordRef.current.value){
+      if ((passwordRef.current.value).length <6) {
+        return setError("Passwords should more than 6 digits")
+      }
+  
+      if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+        return setError("Passwords do not match")
+      }
     }
 
     if (!lastNameRef.current.value || !firstNameRef.current.value) {
