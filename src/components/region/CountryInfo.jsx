@@ -54,31 +54,25 @@ function CountryInfo() {
           var tempObject = {};
           const region = data.Province===''? "All":data.Province;
           // const region = data.Province;
-          tempObject.region = data.Province;
-          tempObject.confirmed = data.Confirmed;
-          tempObject.deaths = data.Deaths;
-          tempObject.active = data.Active;
+          // tempObject.region = data.Province;
+          // tempObject.confirmed = data.Confirmed;
+          // tempObject.deaths = data.Deaths;
+          // tempObject.active = data.Active;
           
           !countryRegion[region]?countryRegion[region] = [data] : countryRegion[region].push(data);
-          // if (ISORegion ==='')
-          //   setISORegion(data.CountryCode);
+
         })
         Object.keys(countryRegion)
                         .map((state,index) =>{
                           options.push(
                             { value: state, label: state===''?'All':state },
                           )
-                          
                           setSelectedOption( options[0]);
-                          // setSelectedData(countryRegion[state]);
                         });
         })
-        console.log((countryRegion),countryRegion,'length');
-
       },[]);
 
       useEffect(() => {
-          let firstValue = countryRegion[selectedOption.value];
           setSelectedData (countryRegion[selectedOption.value]);
           // console.log(countryRegion,'countryRegion');
           Object.keys(countryRegion)
@@ -93,27 +87,6 @@ function CountryInfo() {
                   symbol:state==="All"?'square':'circle',
                   color:state==="All"?'#bebada':'#fdb462'
                 }
-
-            // Object.values(countryRegion[state]).map((stateValue,index)=>{
-                
-            //   if (!analyzeData[state]){
-            //     analyzeData[state] = {
-            //       confirmed : 0,
-            //       recovered : 0,
-            //       death : 0,
-            //       lat:parseFloat(stateValue.Lat),
-            //       lon:parseFloat(stateValue.Lon),
-            //       symbol:state==="All"?'square':'circle',
-            //       color:state==="All"?'#bebada':'#fdb462'
-            //     }
-            //   }else{
-            //     analyzeData[state]['confirmed'] += stateValue.Confirmed
-            //     analyzeData[state]['recovered'] += stateValue.Recovered
-            //     analyzeData[state]['death'] += stateValue.Deaths
-                
-            //   }
-            
-            // });
           });
 
           //Calculate Object All if not exist from API
@@ -123,8 +96,6 @@ function CountryInfo() {
           .then(res => {
             if (res.data.length >0){
               setAnalyzeData({...analyzeData,'AllCountryInfo':res.data[0]})
-              const countryGeoInfo = Object.values(res.data[0]);
-              console.log(countryGeoInfo,'countryGeoInfo');
               setISORegion(res.data[0].cca3)
               if (!analyzeData['All']){
                 let totalConfirmed =0;
@@ -152,23 +123,11 @@ function CountryInfo() {
           // console.log(countryRegion,'countryRegion');
           axios.get(`https://services1.arcgis.com/0MSEUqKaxRlEPj5g/arcgis/rest/services/ncov_cases2_v1/FeatureServer/2/query?where=1%3D1&outFields=*&outSR=4326&f=json`)
           .then(res => {
-            // console.log(res.data.features,'countriesSummary');
             const countriesSummary = (res.data.features).find(country => country.attributes.ISO3 === ISORegion);
             if (countriesSummary&&!summaryInfo)
               setSummaryInfo(countriesSummary);
 
-            console.log(countriesSummary,summaryInfo,'countriesSummary');
-            // console.log(summaryInfo,countriesSummary.find(country => {console.log(country.attributes.ISO3,'ISO3',ISORegion); return country.attributes.ISO3 === ISORegion}),'summaryInfo');
           }); 
-          // if (ISORegion !==''){
-          //   console.log(ISORegion,'ISORegion');
-          //   axios.get(`https://restcountries.com/v3.1/alpha/${CountryCode}`)
-          //   .then(res => {
-
-          //   })
-          // }
-
-           console.log(analyzeData,'...analyzeData');
       },[selectedOption,ISORegion,summaryInfo]);
       
       useEffect(() => {

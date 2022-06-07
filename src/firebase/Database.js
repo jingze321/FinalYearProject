@@ -48,9 +48,7 @@ export function DatabaseProvider({ children }) {
                     timestamp:Date.now(),
                   } 
                 ) 
-    // alert(docRef.id);
     return docRef.id;
-    // console.log("Document written with ID: ", docRef.id);
   }
 
   useEffect(() => {

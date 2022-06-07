@@ -31,8 +31,6 @@ export function RealtimeDatabaseProvider({ children }) {
   }
 
   async function fetchChatData(){
-    // const dbRef = ref(getDatabase());
-    // const [messages,setMessages] = useState([]);
 
     var message = [];
 
@@ -50,23 +48,6 @@ export function RealtimeDatabaseProvider({ children }) {
 
 
       return message;
-
-      // console.log(message,'message');
-    // const unsubscribe = query(child(dbRef,`live-chat/${currentUser.uid}`),orderByChild('timestamp'))
-    //   .then((snapshot) => {
-    //   // console.log(snapshot,'snapshot');
-    //     if (snapshot.exists()) {
-    //       console.log(snapshot.val());
-    //     } else {
-    //       console.log("No data available");
-    //     }
-    //   }).catch((error) => {
-    //     console.error(error);
-    //   });
-
-    // return ()=>{
-    //   unsubscribe();
-    // }
 
   }
 

@@ -21,9 +21,9 @@ function Countries() {
   useEffect(() => {
     // Update the document title using the browser API
     if (query.trim() ==="") setSearchCountries(countries);
-    // console.log(countries);
-    setSearchCountries(countries.filter(country => country.Country.toLowerCase().includes(query.toLowerCase())));
-
+    setSearchCountries(countries.filter(country => 
+        country.Country.toLowerCase().includes(query.toLowerCase())
+    ));
   },[query]);
   return (
     <>
